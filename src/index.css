@@ -59,3 +59,63 @@ code {
 .text-left {
   text-align: left;
 }
+
+.mt-5 {
+  margin-top: 5px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mr-10 {
+  margin-right: 10px !important;
+}
+
+.mr-20 {
+  margin-right: 20px;
+}
+
+.mb-10 {
+  margin-bottom: 10px !important;
+}
+
+.ml-20 {
+  margin-left: 20px !important;
+}
+
+.bg-cl-green {
+  background: #8ADF8E;
+}
+
+.pt-10 {
+  padding-top: 10px;
+}
+
+.pl-30 {
+  padding-left: 30px;
+}
+
+.pd-10 {
+  padding: 10px;
+}
+
+.pl-10 {
+  padding-left: 10px;
+}
+
+.cl-red {
+  color: #FF0000 !important;
+}
+
+.bg-cl-yellow {
+  background: #FFEBCB;
+}

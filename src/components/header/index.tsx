@@ -6,34 +6,40 @@ const Header = (props: any) => {
   const currentPath = props.history.location.pathname;
   const [current, setCurrent] = useState(currentPath);
 
-  const handleClick = () => {
-
+  const switchPage = (path: string) => {
+    props.history.push(path);
+    setCurrent(path);
   };
 
   return (
     <div className="header d-flex">
       <h2 className="logo cursor-pointer">Building Management</h2>
       <div className="float-left">
-        <Menu onClick={handleClick} selectedKeys={current} mode="horizontal">
+        <Menu selectedKeys={current} mode="horizontal">
           <Menu.Item key="/about-us">
-            <a  href={'/about-us'}>
+            <div onClick={() => switchPage('/about-us')}>
               Về chúng tôi
-            </a>
+            </div>
           </Menu.Item>
           <Menu.Item key="/project">
-            <a href={'/project'}>
+            <div onClick={() => switchPage('/project')}>
               Dự án
-            </a>
+            </div>
           </Menu.Item>
           <Menu.Item key="/cooperation">
-            <a href={'/cooperation'}>
+            <div onClick={() => switchPage('/cooperation')}>
               Hợp tác
-            </a>
+            </div>
           </Menu.Item>
           <Menu.Item key="/blog">
-            <a href={'/blog'}>
+            <div onClick={() => switchPage('/blog')}>
               Blog
-            </a>
+            </div>
+          </Menu.Item>
+          <Menu.Item key="/material-setting">
+            <div onClick={() => switchPage('/material-setting')}>
+              Thiết lập vật liệu
+            </div>
           </Menu.Item>
         </Menu>
       </div>

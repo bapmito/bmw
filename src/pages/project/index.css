@@ -31,10 +31,6 @@
   background: #D0D0D0;
 }
 
-.mr-10 {
-  margin-right: 10px;
-}
-
 .setting {
   background: #C4C4C4;
   padding-bottom: 5px;
@@ -49,16 +45,4 @@
   background: #E2E2E2;
   padding: 5px;
   margin: 10px;
-}
-
-.pd-10 {
-  padding: 10px;
-}
-
-.mb-10 {
-  margin-bottom: 10px;
-}
-
-.mt-5 {
-  margin-top: 5px;
 }

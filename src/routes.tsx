@@ -4,6 +4,7 @@ const AboutUs = React.lazy(() => import('./pages/aboutUs'));
 const Blog = React.lazy(() => import('./pages/blog'));
 const Cooperation = React.lazy(() => import('./pages/cooperation'));
 const Project = React.lazy(() => import('./pages/project'));
+const MaterialSetting = React.lazy(() => import('./pages/materialSetting'));
 
 const routes = [
   {
@@ -20,6 +21,9 @@ const routes = [
   },
   {
     path: '/cooperation', exact: true, name: 'Cooperation', component: Cooperation,
+  },
+  {
+    path: '/material-setting', exact: true, name: 'Material Setting', component: MaterialSetting,
   },
 ];
 
