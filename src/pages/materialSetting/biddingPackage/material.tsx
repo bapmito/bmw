@@ -184,10 +184,12 @@ const Material = () => {
               </Select>
             </span>
           )}
-          <CloseCircleOutlined
-            className="float-right icon-plus mt-5 cl-red"
-            onClick={() => removeParam(param.key, arr)}
-          />
+          {param.key !== 1 && (
+            <CloseCircleOutlined
+              className="float-right icon-plus mt-5 cl-red"
+              onClick={() => removeParam(param.key, arr)}
+            />
+          )}
           <div>{recursionSettings(param.children)}</div>
         </div>
       );
