@@ -60,6 +60,7 @@ const Material = () => {
       childrenFilter: [1],
       settings: [
         {
+          key: Math.random().toString(36).substring(2, 4) + Math.random().toString(36).substring(2, 4) + 1,
           inputParameter: '',
           selectParameter: 1,
           parameter: 1,
@@ -99,17 +100,34 @@ const Material = () => {
     setParameterSettings(newParameter);
   };
 
+  const removeParam = (key: string, arr: any) => {
+    for (let i = 0; i < arr.length; i++) {
+      console.log(arr[i])
+      if (arr[i].key === key) {
+        arr.splice(i, 1);
+        setParameterSettings([...parameterSettings]);
+        break;
+      } else {
+        removeParam(key, arr[i].children);
+      }
+    }
+  };
+
   const recursionSettings = (arr: any[]) => {
     return arr && arr.length > 0 && arr.map(param => {
       return (
-        <div className="paramChildren mb-10">
-          <PlusCircleOutlined className="icon-plus mr-20" />
+        <div className="paramChildren mb-10 mr-10">
+          <PlusCircleOutlined
+            className="icon-plus mr-20"
+            onClick={() => selectParameters(null, param.key, arr)}
+          />
           <Input
             style={{ width: 200 }}
             className="mb-10 mr-10"
           />
 
           <Select
+            className="mb-10"
             style={{ width: 150 }}
             showSearch
             optionFilterProp="children"
@@ -131,6 +149,7 @@ const Material = () => {
               <span className="ml-20">
                 Parameter: {' '}
                 <Select
+                  className="mb-10"
                   style={{ width: 150 }}
                   showSearch
                   optionFilterProp="children"
@@ -148,7 +167,7 @@ const Material = () => {
               </span>
 
               <Select
-                className="ml-20"
+                className="ml-20 mb-10"
                 style={{ width: 130 }}
                 showSearch
                 optionFilterProp="children"
@@ -165,6 +184,10 @@ const Material = () => {
               </Select>
             </span>
           )}
+          <CloseCircleOutlined
+            className="float-right icon-plus mt-5 cl-red"
+            onClick={() => removeParam(param.key, arr)}
+          />
           <div>{recursionSettings(param.children)}</div>
         </div>
       );
@@ -172,17 +195,23 @@ const Material = () => {
   };
 
   const selectParameters = (e: any, key: number, arr: any[]) => {
-    if (e === 2) {
+    if (e === 2 || !e) {
       for (let i = 0; i < arr.length; i++) {
+        console.log(arr[i])
         if (arr[i].key === key) {
-          arr[i].children.push({
+          const newParam = {
             key: Math.random().toString(36).substring(2, 4) + Math.random().toString(36).substring(2, 4) + 1,
             inputParameter: 'Tên phân nhóm',
             selectParameter: 1,
             parameter: 1,
             unit: 1,
             children: []
-          });
+          };
+          if (!e) {
+            arr.push(newParam);
+          } else {
+            arr[i].children.push(newParam);
+          }
           setParameterSettings([...parameterSettings]);
           break;
         } else {
