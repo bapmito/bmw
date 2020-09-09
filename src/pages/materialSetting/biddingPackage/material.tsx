@@ -102,7 +102,6 @@ const Material = () => {
 
   const removeParam = (key: string, arr: any) => {
     for (let i = 0; i < arr.length; i++) {
-      console.log(arr[i])
       if (arr[i].key === key) {
         arr.splice(i, 1);
         setParameterSettings([...parameterSettings]);
@@ -116,7 +115,7 @@ const Material = () => {
   const recursionSettings = (arr: any[]) => {
     return arr && arr.length > 0 && arr.map(param => {
       return (
-        <div className="paramChildren mb-10 mr-10">
+        <div className="paramChildren mb-10 mr-10" key={param.key}>
           <PlusCircleOutlined
             className="icon-plus mr-20"
             onClick={() => selectParameters(null, param.key, arr)}
@@ -199,7 +198,6 @@ const Material = () => {
   const selectParameters = (e: any, key: number, arr: any[]) => {
     if (e === 2 || !e) {
       for (let i = 0; i < arr.length; i++) {
-        console.log(arr[i])
         if (arr[i].key === key) {
           const newParam = {
             key: Math.random().toString(36).substring(2, 4) + Math.random().toString(36).substring(2, 4) + 1,
@@ -300,7 +298,6 @@ const Material = () => {
             <Row gutter={24}>
               <PlusCircleOutlined className="icon-plus mt-15" onClick={addParameter} />
               <Col span={23}>
-                {console.log(parameterSettings)}
                 {parameterSettings.length > 0 && parameterSettings.map((item, index: number) => {
                   return (
                     <div key={index} className="mb-10">
