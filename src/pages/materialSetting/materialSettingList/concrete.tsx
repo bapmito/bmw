@@ -1,13 +1,13 @@
 import React from 'react';
 import { Select, Button } from 'antd';
 import constants from '../../../constants';
-import { massTypeMaterialsBindings } from '../../../models/materialSetting';
+import { MassTypeMaterialsBindings } from '../../../models/materialSetting/MassTypeMaterialsBiding';
 import { CloseOutlined, PlusOutlined } from '@ant-design/icons';
 
 const { Option } = Select;
 
 interface Props {
-  data: massTypeMaterialsBindings
+  data: MassTypeMaterialsBindings
 }
 
 const Concrete = (props: Props) => {

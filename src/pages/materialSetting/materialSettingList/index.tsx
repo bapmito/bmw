@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { getMaterialSettings } from '../../../apis/materialSetting'
-import { MaterialSetting } from '../../../models/materialSetting';
+import { BoQ_Project } from '../../../models/BoQ_Project';
 import { CloseOutlined, ShrinkOutlined } from '@ant-design/icons';
 import Concrete from './concrete';
 import FormWork from './formwork';
 
 const MaterialSettingList = () => {
-  const [materialSettings, setMaterialSettings] = useState<MaterialSetting[]>([]);
+  const [materialSettings, setMaterialSettings] = useState<BoQ_Project[]>([]);
 
   useEffect(() => {
     getMaterialSettings().then((res: any) => {

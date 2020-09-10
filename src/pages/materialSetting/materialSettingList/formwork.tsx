@@ -1,14 +1,15 @@
 import React from 'react';
-import { Collapse, Row, Select, Col } from 'antd';
+import { Collapse, Row, Select, Col, Button } from 'antd';
 import constants from '../../../constants';
-import { PlusSquareOutlined, CloseCircleOutlined } from '@ant-design/icons';
-import { massTypeMaterialsBindings, mainValueBinding } from '../../../models/materialSetting';
+import { PlusSquareOutlined, CloseCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import { MassTypeMaterialsBindings } from '../../../models/materialSetting/MassTypeMaterialsBiding';
+import { MainValueBinding } from '../../../models/materialSetting/formwork/FVB_FormworkValueBinding';
 
 const { Panel } = Collapse;
 const { Option } = Select;
 
 interface Props {
-  data: massTypeMaterialsBindings
+  data: MassTypeMaterialsBindings
 }
 
 const FormWork = (props: Props) => {
@@ -43,10 +44,10 @@ const FormWork = (props: Props) => {
     )
   };
 
-  const recursionMainValueBinding = (mainValueBinding: mainValueBinding[]) => {
+  const recursionMainValueBinding = (mainValueBindingArr: MainValueBinding[]) => {
     return (
       <div>
-        {mainValueBinding && mainValueBinding.length > 0 && mainValueBinding.map((item, index) => {
+        {mainValueBindingArr && mainValueBindingArr.length > 0 && mainValueBindingArr.map((item, index) => {
           return (
             <div key={item.name} className="position-relative">
               <CloseCircleOutlined className="icon-close-circle" />
@@ -108,14 +109,12 @@ const FormWork = (props: Props) => {
                 <div>{recursionMainValueBinding(item.subValueBindingsForJson)}</div>
               </div>
 
-              {item.valueBindingType === 0 && index === mainValueBinding.length - 1 && (
+              {item.valueBindingType === 0 && index === mainValueBindingArr.length - 1 && (
                 <PlusSquareOutlined className="icon-plus-quare mr-10" />
               )}
             </div>
           );
         })}
-
-        {console.log(mainValueBinding)}
       </div>
     );
   };
@@ -149,6 +148,9 @@ const FormWork = (props: Props) => {
           </Collapse>
         )
       })}
+      <div className="mt-20 mb-10">
+        <Button type="primary" icon={<PlusOutlined />} className="btn-custom">Bộ lọc</Button>
+      </div>
     </div>
   );
 }
