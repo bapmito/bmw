@@ -25,7 +25,7 @@ const Concrete = (props: Props) => {
       {props.data.materialBindings.length > 0 && props.data.materialBindings.map((item, index) => {
         return (
           <div key={index}>
-            <Select value={item.materialName} className="w-88">
+            <Select value={item.materialName} className="w-88 mb-10">
               {constants.materialOptions.map(item => {
                 return (
                   <Option key={item.key} value={item.value}>
