@@ -40,3 +40,13 @@
   border-radius: 4px;
   padding: 8px;
 }
+
+.icon-close-circle {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  background: #CDD3DB;
+  border-radius: 10px;
+  color: #FFFFFF;
+  cursor: pointer;
+}

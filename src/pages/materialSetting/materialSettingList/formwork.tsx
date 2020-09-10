@@ -1,7 +1,7 @@
 import React from 'react';
 import { Collapse, Row, Select, Col } from 'antd';
 import constants from '../../../constants';
-import { PlusSquareOutlined } from '@ant-design/icons';
+import { PlusSquareOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { massTypeMaterialsBindings, mainValueBinding } from '../../../models/materialSetting';
 
 const { Panel } = Collapse;
@@ -48,7 +48,8 @@ const FormWork = (props: Props) => {
       <div>
         {mainValueBinding && mainValueBinding.length > 0 && mainValueBinding.map((item, index) => {
           return (
-            <div key={item.name}>
+            <div key={item.name} className="position-relative">
+              <CloseCircleOutlined className="icon-close-circle" />
               <div className="container-block-setting mb-10">
                 <Row className="mb-10">
                   <Col span={14}>
