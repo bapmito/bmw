@@ -1,5 +1,5 @@
 import React from 'react';
-import { Collapse, Select } from 'antd';
+import { Collapse, Row, Select, Col } from 'antd';
 import constants from '../../../constants';
 import { PlusSquareOutlined } from '@ant-design/icons';
 import { massTypeMaterialsBindings, mainValueBinding } from '../../../models/materialSetting';
@@ -46,53 +46,74 @@ const FormWork = (props: Props) => {
   const recursionMainValueBinding = (mainValueBinding: mainValueBinding[]) => {
     return (
       <div>
-        {mainValueBinding.map((item, index) => {
+        {mainValueBinding && mainValueBinding.length > 0 && mainValueBinding.map((item, index) => {
           return (
-            <div key={index}>
-              <div className="mb-10">
-                {item.name}:{' '}
-                <Select value={item.valueBindingType}>
-                  {constants.parameters.map(item => {
-                    return (
-                      <Option key={item.key} value={item.value}>
-                        {item.text}
-                      </Option>
-                    );
-                  })}
-                </Select>
+            <div key={item.name}>
+              <div className="container-block-setting mb-10">
+                <Row className="mb-10">
+                  <Col span={14}>
+                    {item.name}:{' '}
+                  </Col>
+                  <Col span={10}>
+                    <Select className="w-100" value={item.valueBindingType}>
+                      {constants.parameters.map(item => {
+                        return (
+                          <Option key={item.key} value={item.value}>
+                            {item.text}
+                          </Option>
+                        );
+                      })}
+                    </Select>
+                  </Col>
+                </Row>
+
+                {item.valueBindingType === 0 && (
+                  <div>
+                    <Row className="mb-10">
+                      <Col span={8}>
+                        Parameter:
+                      </Col>
+                      <Col span={16}>
+                        <Select className="w-100" value={item.parameterNameForJson}>
+                          {constants.parameterTypes.map(item => {
+                            return (
+                              <Option key={item.key} value={item.value}>
+                                {item.text}
+                              </Option>
+                            );
+                          })}
+                        </Select>
+                      </Col>
+                    </Row>
+                    <Row className="mb-10">
+                      <Col span={8}>
+                        Đơn vị:
+                      </Col>
+                      <Col span={16}>
+                        <Select className="w-100" value={item.massCalculateBy}>
+                          {constants.parameterUnits.map(item => {
+                            return (
+                              <Option key={item.key} value={item.value}>
+                                {item.text}
+                              </Option>
+                            );
+                          })}
+                        </Select>
+                      </Col>
+                    </Row>
+                  </div>
+                )}
+
+                <div>{recursionMainValueBinding(item.subValueBindingsForJson)}</div>
               </div>
 
-              {item.valueBindingType === 0 && (
-                <div>
-                  <div className="mb-10">
-                    Parameter:{' '}
-                    <Select value={item.parameterNameForJson}>
-                      {constants.parameterTypes.map(item => {
-                        return (
-                          <Option key={item.key} value={item.value}>
-                            {item.text}
-                          </Option>
-                        );
-                      })}
-                    </Select>
-                  </div>
-                  <div className="mb-10">
-                    Đơn vị:{' '}
-                    <Select value={item.massCalculateBy}>
-                      {constants.parameterUnits.map(item => {
-                        return (
-                          <Option key={item.key} value={item.value}>
-                            {item.text}
-                          </Option>
-                        );
-                      })}
-                    </Select>
-                  </div>
-                </div>
+              {item.valueBindingType === 0 && index === mainValueBinding.length - 1 && (
+                <PlusSquareOutlined className="icon-plus-quare mr-10" />
               )}
             </div>
           );
         })}
+
         {console.log(mainValueBinding)}
       </div>
     );
