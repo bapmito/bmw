@@ -43,7 +43,7 @@ const MaterialSettingList = React.memo(() => {
     const newMaterialSetting = [...materialSettings];
 
     const newData = newMaterialSetting[6].disciplineType_MassTypeMaterialBinding_Dictionary
-      .disciplineType_MassTypeMaterialBindings[0].massTypeMaterialsBindings[disciplineSelected]
+      .disciplineType_MassTypeMaterialBindings[0].massTypeMaterialsBindings[disciplineSelected];
 
     if (fieldName === 'formwork') {
       newData.categoryTypeFilter_FormworkValueBinding_Dictionary.categoryTypeFilter_FormworkValueBindings = data;
@@ -96,9 +96,9 @@ const MaterialSettingList = React.memo(() => {
           value={disciplineSelected}
           onChange={(e) => setDisciplineSelected(e)}
         >
-          {disciplineList && disciplineList.length > 0 && disciplineList.map((item: Discipline) => {
+          {disciplineList && disciplineList.length > 0 && disciplineList.map((item: Discipline, index: number) => {
             return (
-              <Option value={item.id}>
+              <Option key={index} value={item.id}>
                 {item.name}
               </Option>
             );

@@ -110,7 +110,7 @@ const FormWork = React.memo((props: Props) => {
     const newData = [...data];
 
     if (JSON.stringify(parent) === JSON.stringify(item)) {
-      data.splice(indexRoot, 1);
+      newData.splice(indexRoot, 1);
     } else if (parent.subValueBindingsForJson.length === 1) {
       findGrandFather(indexRoot, parent.key);
     } else {
