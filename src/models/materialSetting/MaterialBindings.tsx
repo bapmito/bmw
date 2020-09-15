@@ -1,5 +1,5 @@
 export interface MaterialBindings {
   materialName: string,
-  materialDescription: string,
+  materialDesciption: string | null,
   layerWidth: number
 }

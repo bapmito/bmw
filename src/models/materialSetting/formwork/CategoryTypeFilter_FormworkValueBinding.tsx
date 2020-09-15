@@ -3,5 +3,5 @@ import { MainValueBinding } from './FVB_FormworkValueBinding';
 
 export interface CategoryTypeFilter_FormworkValueBindings {
   categoryTypeFilter: CategoryTypeFilter,
-  mainValueBinding: MainValueBinding,
+  mainValueBinding: MainValueBinding | null,
 }

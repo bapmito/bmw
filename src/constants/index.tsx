@@ -1,9 +1,11 @@
 const constants = {
+  SUCCESS_CODE: 200,
+
   subjectOptions: [
     { key: 1, value: 0, text: 'Bê tông' },
     { key: 2, value: 1, text: 'Ván khuôn' },
     { key: 3, value: 2, text: 'Cốt thép' },
-    { key: 4, value: 3, text: 'Bê tông lót' },
+    { key: 4, value: 4, text: 'Bê tông lót' },
   ],
   materialOptions: [
     { key: 1, value: 1, text: 'Default' },
@@ -22,7 +24,7 @@ const constants = {
   ],
   parameterUnits: [
     { key: 1, value: 1, text: 'Mét vuông' },
-    { key: 2, value: 2, text: 'Mét dài' },
+    { key: 2, value: 0, text: 'Mét dài' },
   ],
   parameterSettingOptions: [
     { key: 1, value: 1, text: 'equal' },
@@ -38,6 +40,46 @@ const constants = {
     { key: 6, value: 6, text: 'Ramp dốc' },
     { key: 7, value: 7, text: 'Cầu thang' },
   ],
+  initFormworkValue: {
+    categoryTypeFilter: {
+      categoryFilterType: 0,
+      categoryFilterNames: ['Dầm'],
+    },
+    mainValueBinding: {
+      massCalculateBy: 1,
+      name: 'Diện tích ván khuôn',
+      parameterNameForJson: 'Height',
+      subValueBindingsForJson: [],
+      valueBindingType: 0,
+    }
+  },
+  initConcreteValue: {
+    layerWidth: 100,
+    materialDesciption: null,
+    materialName: "CEN_CONCRETE",
+  },
+  initSubValueBindingsForJson: {
+    massCalculateBy: 1,
+    name: "Diện tích ván khuôn",
+    parameterNameForJson: 'Height',
+    subValueBindingsForJson: [],
+    valueBindingType: 0
+  },
+  initMaterialSetting: {
+    categoryTypeFilter_FormworkValueBinding_Dictionary: {
+      categoryTypeFilter_FormworkValueBindings: []
+    },
+    categoryType_FamilyNameFilter_ParameterBindings: [],
+    massType: 0,
+    materialBindings: [
+      {
+        layerWidth: 100,
+        materialDesciption: null,
+        materialName: "CEN_CONCRETE",
+      }
+    ],
+    parameterName: null
+  }
 };
 
 export default constants;

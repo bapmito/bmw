@@ -1,6 +1,6 @@
 import axios, {AxiosResponse} from 'axios';
 
-const callApi = async (url: string, method: string, params?: object): Promise<AxiosResponse> => {
+const callApi = async (url: string, method: string, params?: object, data?: object): Promise<AxiosResponse> => {
   const headers = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -11,6 +11,8 @@ const callApi = async (url: string, method: string, params?: object): Promise<Ax
     url,
     method,
     headers,
+    params,
+    data,
     dataType: 'json',
   };
 

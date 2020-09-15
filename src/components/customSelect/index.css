@@ -1,0 +1,9 @@
+.editable-select .select {
+  position: absolute;
+  z-index: 0;
+}
+
+.editable-select .input {
+  position: absolute;
+  z-index: 10;
+}
