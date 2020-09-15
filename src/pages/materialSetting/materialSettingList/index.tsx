@@ -24,7 +24,7 @@ const MaterialSettingList = React.memo(() => {
   const updateData = (data: any, fieldName: string, index: number) => {
     const newMaterialSetting = [...materialSettings];
 
-    const newData = newMaterialSetting[2].disciplineType_MassTypeMaterialBinding_Dictionary
+    const newData = newMaterialSetting[6].disciplineType_MassTypeMaterialBinding_Dictionary
       .disciplineType_MassTypeMaterialBindings[0].massTypeMaterialsBindings[index]
 
     if (fieldName === 'formwork') {
@@ -37,7 +37,7 @@ const MaterialSettingList = React.memo(() => {
   };
 
   const updateMaterialSetting = () => {
-    updateMaterialSettings(materialSettings[2]).then((res) => {
+    updateMaterialSettings(materialSettings[6]).then((res) => {
       if (res.status === constants.SUCCESS_CODE) {
         notification('success', 'Cập nhật thiết lập vật liệu thành công!')
       }
@@ -66,7 +66,7 @@ const MaterialSettingList = React.memo(() => {
   };
 
   const addMaterialSetting = () => {
-    const newData = materialSettings[2].disciplineType_MassTypeMaterialBinding_Dictionary
+    const newData = materialSettings[6].disciplineType_MassTypeMaterialBinding_Dictionary
       .disciplineType_MassTypeMaterialBindings[0].massTypeMaterialsBindings;
 
     newData.push(JSON.parse(JSON.stringify(constants.initMaterialSetting)));
@@ -74,7 +74,7 @@ const MaterialSettingList = React.memo(() => {
   };
 
   const removeMaterialSetting = (index: number) => {
-    const newData = materialSettings[2].disciplineType_MassTypeMaterialBinding_Dictionary
+    const newData = materialSettings[6].disciplineType_MassTypeMaterialBinding_Dictionary
       .disciplineType_MassTypeMaterialBindings[0].massTypeMaterialsBindings;
 
     newData.splice(index, 1);
@@ -94,8 +94,8 @@ const MaterialSettingList = React.memo(() => {
         <Button type="primary" onClick={updateMaterialSetting}>Cập nhật</Button>
       </div>
       <div className="panel-material-setting">
-        {materialSettings && materialSettings[2]
-        && materialSettings[2].disciplineType_MassTypeMaterialBinding_Dictionary
+        {materialSettings && materialSettings[6]
+        && materialSettings[6].disciplineType_MassTypeMaterialBinding_Dictionary
           .disciplineType_MassTypeMaterialBindings[0].massTypeMaterialsBindings.map((item, index) => {
           return (
             <div className="panel-setting mr-20" key={index}>
