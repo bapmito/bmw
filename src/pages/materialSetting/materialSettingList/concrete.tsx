@@ -4,6 +4,8 @@ import { CloseOutlined, PlusOutlined } from '@ant-design/icons';
 import constants from '../../../constants';
 import { MassTypeMaterialsBindings } from '../../../models/materialSetting/MassTypeMaterialsBiding';
 import { MaterialBindings } from '../../../models/materialSetting/MaterialBindings';
+import { Material } from '../../../models/material';
+import { getMaterialList } from '../../../apis/materialSetting';
 
 const { Option } = Select;
 
@@ -14,10 +16,17 @@ interface Props {
 
 const Concrete = React.memo((props: Props) => {
   const [data, setData] = useState<MaterialBindings[]>([]);
+  const [materialList, setMaterialList] = useState<Material[]>([]);
 
   useEffect(() => {
     setData(props.data.materialBindings);
   }, [props.data.materialBindings]);
+
+  useEffect(() => {
+    getMaterialList().then(res => {
+      setMaterialList(res.data);
+    });
+  }, []);
 
   const changeMaterial = (e: any, index: number) => {
     const newData = [...data];
@@ -50,10 +59,10 @@ const Concrete = React.memo((props: Props) => {
               className="w-88 mb-10"
               onChange={(e) => changeMaterial(e, index)}
             >
-              {constants.materialOptions.map(item => {
+              {materialList && materialList.length > 0 && materialList.map(item => {
                 return (
-                  <Option key={item.key} value={item.text}>
-                    {item.text}
+                  <Option key={item.id} value={item.name}>
+                    {item.name}
                   </Option>
                 );
               })}

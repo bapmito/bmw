@@ -253,7 +253,6 @@ const FormWork = React.memo((props: Props) => {
 
   return (
     <div>
-      {console.log(data, 'data')}
       {data.map((item, index) => {
         if (item.mainValueBinding) {
           return (

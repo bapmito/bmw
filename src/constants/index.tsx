@@ -1,18 +1,5 @@
 const constants = {
   SUCCESS_CODE: 200,
-
-  subjectOptions: [
-    { key: 1, value: 0, text: 'Bê tông' },
-    { key: 2, value: 1, text: 'Ván khuôn' },
-    { key: 3, value: 2, text: 'Cốt thép' },
-    { key: 4, value: 4, text: 'Bê tông lót' },
-  ],
-  materialOptions: [
-    { key: 1, value: 1, text: 'Default' },
-    { key: 2, value: 2, text: 'Default Wall' },
-    { key: 3, value: 3, text: 'Default Roof' },
-    { key: 4, value: 'CEN_CONCRETE', text: 'CEN_CONCRETE' },
-  ],
   parameters: [
     { key: 1, value: 0, text: 'parameter' },
     { key: 2, value: 1, text: 'submass' },

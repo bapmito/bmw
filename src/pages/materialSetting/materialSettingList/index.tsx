@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { getMaterialSettings, updateMaterialSettings } from '../../../apis/materialSetting'
+import {
+  getDisciplineList,
+  getMassTypeList,
+  getMaterialSettings,
+  updateMaterialSettings
+} from '../../../apis/materialSetting'
 import { BoQ_Project } from '../../../models/BoQ_Project';
 import { CloseOutlined, ShrinkOutlined } from '@ant-design/icons';
 import Concrete from './concrete';
@@ -9,23 +14,36 @@ import constants from '../../../constants';
 import { MaterialBindings } from '../../../models/materialSetting/MaterialBindings';
 import { notification } from '../../../utils/commonFuntions';
 import { MassTypeMaterialsBindings } from '../../../models/materialSetting/MassTypeMaterialsBiding';
+import { Discipline } from '../../../models/discipline';
+import { MassType } from '../../../models/massType';
 
 const { Option } = Select;
 
 const MaterialSettingList = React.memo(() => {
   const [materialSettings, setMaterialSettings] = useState<BoQ_Project[]>([]);
+  const [disciplineList, setDisciplineList] = useState<Discipline[]>([]);
+  const [massTypeList, setMassTypeList] = useState<MassType[]>([]);
+  const [disciplineSelected, setDisciplineSelected] = useState(0);
 
   useEffect(() => {
     getMaterialSettings().then((res: any) => {
       setMaterialSettings(res.data);
     });
+
+    getDisciplineList().then(res => {
+      setDisciplineList(res.data);
+    });
+
+    getMassTypeList().then(res => {
+      setMassTypeList(res.data);
+    });
   }, []);
 
-  const updateData = (data: any, fieldName: string, index: number) => {
+  const updateData = (data: any, fieldName: string) => {
     const newMaterialSetting = [...materialSettings];
 
     const newData = newMaterialSetting[6].disciplineType_MassTypeMaterialBinding_Dictionary
-      .disciplineType_MassTypeMaterialBindings[0].massTypeMaterialsBindings[index]
+      .disciplineType_MassTypeMaterialBindings[0].massTypeMaterialsBindings[disciplineSelected]
 
     if (fieldName === 'formwork') {
       newData.categoryTypeFilter_FormworkValueBinding_Dictionary.categoryTypeFilter_FormworkValueBindings = data;
@@ -65,81 +83,71 @@ const MaterialSettingList = React.memo(() => {
     setMaterialSettings([...materialSettings]);
   };
 
-  const addMaterialSetting = () => {
-    const newData = materialSettings[6].disciplineType_MassTypeMaterialBinding_Dictionary
-      .disciplineType_MassTypeMaterialBindings[0].massTypeMaterialsBindings;
-
-    newData.push(JSON.parse(JSON.stringify(constants.initMaterialSetting)));
-    setMaterialSettings([...materialSettings]);
-  };
-
-  const removeMaterialSetting = (index: number) => {
-    const newData = materialSettings[6].disciplineType_MassTypeMaterialBinding_Dictionary
-      .disciplineType_MassTypeMaterialBindings[0].massTypeMaterialsBindings;
-
-    newData.splice(index, 1);
-    setMaterialSettings([...materialSettings]);
-  };
+  const dataDiscipline = materialSettings && materialSettings[6]
+    && materialSettings[6].disciplineType_MassTypeMaterialBinding_Dictionary
+      .disciplineType_MassTypeMaterialBindings[0].massTypeMaterialsBindings[disciplineSelected];
 
   return (
     <div>
       <div className="mb-10">
-        <Button
-          type="primary"
+        <Select
+          style={{width: 200}}
           className="mr-20"
-          onClick={addMaterialSetting}
+          value={disciplineSelected}
+          onChange={(e) => setDisciplineSelected(e)}
         >
-          Thêm thiết lập vật liệu
-        </Button>
+          {disciplineList && disciplineList.length > 0 && disciplineList.map((item: Discipline) => {
+            return (
+              <Option value={item.id}>
+                {item.name}
+              </Option>
+            );
+          })}
+        </Select>
         <Button type="primary" onClick={updateMaterialSetting}>Cập nhật</Button>
       </div>
-      <div className="panel-material-setting">
-        {materialSettings && materialSettings[6]
-        && materialSettings[6].disciplineType_MassTypeMaterialBinding_Dictionary
-          .disciplineType_MassTypeMaterialBindings[0].massTypeMaterialsBindings.map((item, index) => {
-          return (
-            <div className="panel-setting mr-20" key={index}>
-              <div className="panel-setting-header">
-                Thiết lập vật liệu
-                <CloseOutlined
-                  className="float-right mt-5 cursor-pointer"
-                  style={{ fontSize: 14 }}
-                  onClick={() => removeMaterialSetting(index)}
-                />
-                <ShrinkOutlined className="float-right mt-5 mr-10 cursor-pointer" style={{ fontSize: 14 }}/>
-              </div>
-              <div className="panel-setting-body">
-                <Select
-                  className="w-100 mb-10"
-                  value={item.massType}
-                  onChange={(e) => handleChangeMassType(e, item)}
-                >
-                  {constants.subjectOptions.map(subject => {
-                    return (
-                      <Option key={subject.key} value={subject.value}>
-                        {subject.text}
-                      </Option>
-                    );
-                  })}
-                </Select>
-              </div>
-              <div className="panel-setting-body">
-                {item.massType === 0 && (
-                  <Concrete
-                    data={item}
-                    updateData={(data: MaterialBindings[]) => updateData(data, 'concrete', index)} />
-                )}
-                {item.massType === 1 && (
-                  <FormWork
-                    data={item}
-                    updateData={(data: MaterialBindings[]) => updateData(data, 'formwork', index)}
-                  />
-                )}
-              </div>
+      {dataDiscipline && (
+        <div className="panel-material-setting">
+          <div className="panel-setting mr-20">
+            <div className="panel-setting-header">
+              Thiết lập vật liệu
+              <CloseOutlined
+                className="float-right mt-5 cursor-pointer"
+                style={{ fontSize: 14 }}
+              />
+              <ShrinkOutlined className="float-right mt-5 mr-10 cursor-pointer" style={{ fontSize: 14 }}/>
             </div>
-          )
-        })}
-      </div>
+            <div className="panel-setting-body">
+              <Select
+                className="w-100 mb-10"
+                value={dataDiscipline.massType}
+                onChange={(e) => handleChangeMassType(e, dataDiscipline)}
+              >
+                {massTypeList && massTypeList.length > 0 && massTypeList.map(item => {
+                  return (
+                    <Option key={item.id} value={item.id}>
+                      {item.name}
+                    </Option>
+                  );
+                })}
+              </Select>
+            </div>
+            <div className="panel-setting-body">
+              {dataDiscipline.massType === 0 && (
+                <Concrete
+                  data={dataDiscipline}
+                  updateData={(data: MaterialBindings[]) => updateData(data, 'concrete')} />
+              )}
+              {dataDiscipline.massType === 1 && (
+                <FormWork
+                  data={dataDiscipline}
+                  updateData={(data: MaterialBindings[]) => updateData(data, 'formwork')}
+                />
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 });
