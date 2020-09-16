@@ -64,21 +64,6 @@ const MaterialSettingList = React.memo(() => {
 
   const handleChangeMassType = (e: any, item: MassTypeMaterialsBindings) => {
     item.massType = e;
-    switch (e) {
-      case 0:
-        item.materialBindings = [
-          JSON.parse(JSON.stringify(constants.initConcreteValue))
-        ];
-        item.categoryTypeFilter_FormworkValueBinding_Dictionary.categoryTypeFilter_FormworkValueBindings = [];
-        break;
-      case 1:
-        item.categoryTypeFilter_FormworkValueBinding_Dictionary.categoryTypeFilter_FormworkValueBindings = [
-          JSON.parse(JSON.stringify(constants.initFormworkValue))
-        ];
-        item.materialBindings = [];
-        break;
-      default: break;
-    }
 
     setMaterialSettings([...materialSettings]);
   };
