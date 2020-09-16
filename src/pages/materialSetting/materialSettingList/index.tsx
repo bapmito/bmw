@@ -13,7 +13,6 @@ import { Select, Button } from 'antd';
 import constants from '../../../constants';
 import { MaterialBindings } from '../../../models/materialSetting/MaterialBindings';
 import { notification } from '../../../utils/commonFuntions';
-import { MassTypeMaterialsBindings } from '../../../models/materialSetting/MassTypeMaterialsBiding';
 import { Discipline } from '../../../models/discipline';
 import { MassType } from '../../../models/massType';
 

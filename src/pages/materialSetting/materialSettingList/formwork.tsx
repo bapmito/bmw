@@ -24,7 +24,7 @@ const FormWork = React.memo((props: Props) => {
     const data = props.data.categoryTypeFilter_FormworkValueBinding_Dictionary
       .categoryTypeFilter_FormworkValueBindings;
 
-    data.length > 0 && data.map(item => {
+    data.length > 0 && data.forEach(item => {
       addKeyForObject(item.mainValueBinding);
     });
 
