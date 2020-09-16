@@ -24,6 +24,7 @@ const MaterialSettingList = React.memo(() => {
   const [disciplineList, setDisciplineList] = useState<Discipline[]>([]);
   const [massTypeList, setMassTypeList] = useState<MassType[]>([]);
   const [disciplineSelected, setDisciplineSelected] = useState(0);
+  const [massTypeSelected, setMassTypeSelected] = useState(0);
 
   useEffect(() => {
     getMaterialSettings().then((res: any) => {
@@ -62,15 +63,17 @@ const MaterialSettingList = React.memo(() => {
     });
   };
 
-  const handleChangeMassType = (e: any, item: MassTypeMaterialsBindings) => {
-    item.massType = e;
-
-    setMaterialSettings([...materialSettings]);
+  const handleChangeMassType = (e: any) => {
+    setMassTypeSelected(e);
   };
 
-  const dataDiscipline = materialSettings && materialSettings[6]
+  const dataMassType = materialSettings && materialSettings[6]
     && materialSettings[6].disciplineType_MassTypeMaterialBinding_Dictionary
-      .disciplineType_MassTypeMaterialBindings[0].massTypeMaterialsBindings[disciplineSelected];
+      .disciplineType_MassTypeMaterialBindings[disciplineSelected].massTypeMaterialsBindings;
+
+  const dataMassTypeFiltered = dataMassType && dataMassType.length > 0 && dataMassType.filter(item => {
+    return item.massType === massTypeSelected;
+  })[0];
 
   return (
     <div>
@@ -91,7 +94,7 @@ const MaterialSettingList = React.memo(() => {
         </Select>
         <Button type="primary" onClick={updateMaterialSetting}>Cập nhật</Button>
       </div>
-      {dataDiscipline && (
+      {dataMassTypeFiltered && (
         <div className="panel-material-setting">
           <div className="panel-setting mr-20">
             <div className="panel-setting-header">
@@ -105,8 +108,8 @@ const MaterialSettingList = React.memo(() => {
             <div className="panel-setting-body">
               <Select
                 className="w-100 mb-10"
-                value={dataDiscipline.massType}
-                onChange={(e) => handleChangeMassType(e, dataDiscipline)}
+                value={massTypeSelected}
+                onChange={handleChangeMassType}
               >
                 {massTypeList && massTypeList.length > 0 && massTypeList.map(item => {
                   return (
@@ -118,14 +121,14 @@ const MaterialSettingList = React.memo(() => {
               </Select>
             </div>
             <div className="panel-setting-body">
-              {dataDiscipline.massType === 0 && (
+              {dataMassTypeFiltered.massType === 0 && (
                 <Concrete
-                  data={dataDiscipline}
+                  data={dataMassTypeFiltered}
                   updateData={(data: MaterialBindings[]) => updateData(data, 'concrete')} />
               )}
-              {dataDiscipline.massType === 1 && (
+              {dataMassTypeFiltered.massType === 1 && (
                 <FormWork
-                  data={dataDiscipline}
+                  data={dataMassTypeFiltered}
                   updateData={(data: MaterialBindings[]) => updateData(data, 'formwork')}
                 />
               )}
