@@ -49,7 +49,8 @@ const FormWork = React.memo((props: Props) => {
     props.updateData([...data]);
   };
 
-  const removeFilter  = (categoryFilterNames: Array<string>, index: number) => {
+  const removeFilter  = (e: any, categoryFilterNames: Array<string>, index: number) => {
+    e.stopPropagation();
     categoryFilterNames.splice(index, 1);
 
     props.updateData([...data]);
@@ -76,7 +77,7 @@ const FormWork = React.memo((props: Props) => {
                   );
                 })}
               </Select>
-              <CloseOutlined className="icon-close ml-5" onClick={() => removeFilter(categoryFilterNames, index)} />
+              <CloseOutlined className="icon-close ml-5" onClick={(e) => removeFilter(e, categoryFilterNames, index)} />
             </span>
           );
         })}
