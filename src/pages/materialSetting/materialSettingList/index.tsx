@@ -5,6 +5,7 @@ import {
   getMaterialSettings,
   updateMaterialSettings
 } from '../../../apis/materialSetting'
+import './index.css';
 import { BoQ_Project } from '../../../models/BoQ_Project';
 import { CloseOutlined, ShrinkOutlined } from '@ant-design/icons';
 import Concrete from './concrete';
@@ -75,7 +76,7 @@ const MaterialSettingList = React.memo(() => {
   })[0];
 
   return (
-    <div>
+    <div className="container-material-setting">
       <div className="mb-10">
         <Select
           style={{width: 200}}
