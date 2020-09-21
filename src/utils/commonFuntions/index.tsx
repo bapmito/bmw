@@ -1,4 +1,5 @@
 import { message } from 'antd';
+import constants from '../../constants';
 
 export const notification = (type: 'info' | 'success' | 'error' | 'warning' | 'loading', messageText: string) => {
   message[type](messageText);
@@ -14,3 +15,12 @@ export const addKeyForObject = (object: any) => {
     }
   });
 }
+
+export const convertMassGroupByPropertyName = (id: number) => {
+  const massGroupByPropertyNameFiltered = constants.massGroupByPropertyNames.filter(item => {
+    return item.id === id;
+  });
+
+  return massGroupByPropertyNameFiltered && massGroupByPropertyNameFiltered.length > 0
+  && massGroupByPropertyNameFiltered[0].name;
+};

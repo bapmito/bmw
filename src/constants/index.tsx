@@ -66,7 +66,30 @@ const constants = {
       }
     ],
     parameterName: null
-  }
+  },
+  massGroupByPropertyNames: [
+    { id: 0, name: 'Level' },
+    { id: 1, name: 'Mark' },
+    { id: 2, name: 'EntCategoryType' },
+    { id: 3, name: 'MassType' },
+    { id: 4, name: 'MEPSystemType' },
+    { id: 5, name: 'Size' },
+    { id: 6, name: 'None' },
+    { id: 7, name: 'Family' },
+    { id: 8, name: 'TypeName' },
+    { id: 9, name: 'Id' },
+    { id: 10, name: 'PipeDirectionType' },
+    { id: 11, name: 'SubCategory' },
+    { id: 12, name: 'Material' },
+    { id: 13, name: 'LayerWidth' },
+    { id: 14, name: 'Width' },
+    { id: 15, name: 'Height' },
+    { id: 16, name: 'SectionDetail' },
+    { id: 17, name: 'HostCategoryType' },
+    { id: 18, name: 'ToleThickness' },
+    { id: 19, name: 'MEPSystemClassify' },
+    { id: 20, name: 'MassDescription' },
+  ]
 };
 
 export default constants;

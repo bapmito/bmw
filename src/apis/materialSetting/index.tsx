@@ -28,3 +28,17 @@ export const updateMaterialSettings = (data: BoQ_Project) => callApi(
   undefined,
   data,
 );
+
+export const getMassGroupById = (params: any) => callApi(
+  `${API_BE}/boq_project/massgroup`,
+  'get',
+  params
+);
+
+export const updateMassGroup = (data: any) => callApi(
+  `${API_BE}/boq_project/massgroup`,
+  'put',
+  undefined,
+  data,
+);
+

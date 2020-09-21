@@ -29,7 +29,7 @@ code {
 }
 
 .cursor-pointer {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .ant-menu-inline, .ant-menu-submenu, .ant-menu-sub.ant-menu-inline {
@@ -85,6 +85,10 @@ code {
   margin-top: 20px;
 }
 
+.mr-5 {
+  margin-right: 5px !important;
+}
+
 .mr-10 {
   margin-right: 10px !important;
 }
@@ -95,6 +99,10 @@ code {
 
 .mb-10 {
   margin-bottom: 10px !important;
+}
+
+.mb-5 {
+  margin-bottom: 5px !important;
 }
 
 .ml-20 {
@@ -133,6 +141,10 @@ code {
   padding-bottom: 10px;
 }
 
+.pr-20 {
+  padding-right: 20px !important;
+}
+
 .cl-red {
   color: #FF0000 !important;
 }
@@ -159,4 +171,61 @@ code {
 
 .position-relative {
   position: relative;
+}
+
+.panel-setting {
+  width: 320px;
+  margin-bottom: 30px;
+  border: 1px solid #003B99;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.panel-setting-header {
+  color: #FFFFFF;
+  padding: 8px;
+  background: #003B99;
+}
+
+.panel-setting-body {
+  padding: 8px;
+}
+
+.icon-close {
+  color: #BEC6D0 !important;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.icon-close:hover {
+  color: #0062FF;
+}
+
+.icon-folder {
+  font-size: 18px;
+  color: #0062FF !important;
+  cursor: pointer;
+}
+
+.container-block-setting {
+  border: 1px solid #EAEDF0;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.icon-close-circle {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  background: #FFA39E;
+  border-radius: 10px;
+  color: #FFFFFF !important;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.icon-enter {
+  color: #CDD3DB !important;
+  font-size: 16px;
+  transform: scaleX(-1);
 }
