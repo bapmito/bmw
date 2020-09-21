@@ -89,7 +89,15 @@ const constants = {
     { id: 18, name: 'ToleThickness' },
     { id: 19, name: 'MEPSystemClassify' },
     { id: 20, name: 'MassDescription' },
-  ]
+  ],
+  filterMassGroup: [
+    { id: 1, name: 'Level 1' },
+    { id: 2, name: 'Level 2' },
+    { id: 3, name: 'Level 3' },
+    { id: 4, name: 'Level 4' },
+    { id: 5, name: 'Level 5' },
+    { id: 6, name: 'Level 01 - B.O. Footing' },
+  ],
 };
 
 export default constants;

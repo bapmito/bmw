@@ -86,6 +86,27 @@ const MassGroupView = () => {
     setMassGroup([...massGroup]);
   };
 
+  const addFilter = (arrayFilter: Array<string>) => {
+    const arrFiltered = constants.filterMassGroup.filter((item: any) => {
+      return arrayFilter.indexOf(item.name) === -1;
+    });
+
+    arrayFilter.push(arrFiltered[0].name);
+    setMassGroup([...massGroup]);
+  };
+
+  const removeFilter = (arrayFilter: Array<string>, index: number) => {
+    arrayFilter.splice(index, 1);
+
+    setMassGroup([...massGroup]);
+  };
+
+  const handleChangeFilter = (e: any, arrFilter: Array<string>, index: number) => {
+    arrFilter[index] = e;
+
+    setMassGroup([...massGroup]);
+  };
+
   const recursionMassGroup = (massGroupComponent: MassGroupComponent) => {
     const newMassGroupComponent = massGroupView ? massGroupView : massGroupComponent;
     return (
@@ -106,6 +127,57 @@ const MassGroupView = () => {
             />
           </Col>
         </Row>
+        <h3 className="mt-10">Bộ lọc</h3>
+        <Select
+          className="w-100"
+          value={newMassGroupComponent.massGroupFilterType}
+          onChange={(e) => handleChangeInput(e, newMassGroupComponent, 'massGroupFilterType')}
+        >
+          {constants.massGroupByPropertyNames.map(item => {
+            return (
+              <Option key={item.id} value={item.id} >
+                {item.name}
+              </Option>
+            );
+          })}
+        </Select>
+        <div>
+          {newMassGroupComponent.massGroupFilterNames.length > 0
+          && newMassGroupComponent.massGroupFilterNames.map((item: string, index: number) => {
+            return (
+              <span>
+                <Select
+                  className="mt-10"
+                  style={{width: 100}}
+                  value={item}
+                  onChange={(e) => handleChangeFilter(e, newMassGroupComponent.massGroupFilterNames, index)}
+                >
+                  {constants.filterMassGroup.map(item => {
+                    return (
+                      <Option key={item.id} value={item.name} >
+                        {item.name}
+                      </Option>
+                    );
+                  })}
+                </Select>
+                 <CloseOutlined
+                   className="icon-close ml-5 mr-10"
+                   onClick={() => removeFilter(newMassGroupComponent.massGroupFilterNames, index)}
+                 />
+              </span>
+            );
+          })}
+        </div>
+        <div className="mt-10 mb-10">
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            className="btn-custom"
+            onClick={() => addFilter(newMassGroupComponent.massGroupFilterNames)}
+          >
+            Bộ lọc
+          </Button>
+        </div>
         <div className="container-block-setting mt-10">
           <h3 className="mb-10">Phân cấp dọc</h3>
           {newMassGroupComponent.massGroups && newMassGroupComponent.massGroups.length > 0
