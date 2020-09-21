@@ -327,7 +327,11 @@ const MassGroupView = () => {
                   <CloseCircleOutlined
                     className="icon-close-circle"
                   />
-                  <Input className="mb-10" value={item.name} />
+                  <Input
+                    className="mb-10"
+                    value={item.name}
+                    onChange={(e) => handleChangeInput(e.target.value, item, 'name')}
+                  />
                   <div className="mb-10">
                     <Select style={{width: 80}} className="mr-5">
                       <Option value='1'>
