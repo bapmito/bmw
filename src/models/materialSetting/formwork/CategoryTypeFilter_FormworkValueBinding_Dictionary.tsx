@@ -1,5 +1,15 @@
-import { CategoryTypeFilter_FormworkValueBindings } from './CategoryTypeFilter_FormworkValueBinding';
+import { List } from '../../list/List';
+import { CategoryTypeFilter_FormworkValueBinding } from './CategoryTypeFilter_FormworkValueBinding';
 
-export interface CategoryTypeFilter_FormworkValueBinding_Dictionary {
-  categoryTypeFilter_FormworkValueBindings: CategoryTypeFilter_FormworkValueBindings[],
+export class CategoryTypeFilter_FormworkValueBinding_Dictionary {
+  private _categoryTypeFilter_FormworkValueBindings?: List<CategoryTypeFilter_FormworkValueBinding>;
+  public get categoryTypeFilter_FormworkValueBindings() : List<CategoryTypeFilter_FormworkValueBinding>{
+    if (this._categoryTypeFilter_FormworkValueBindings == null){
+      this._categoryTypeFilter_FormworkValueBindings = new List<CategoryTypeFilter_FormworkValueBinding>();
+    }
+    return this._categoryTypeFilter_FormworkValueBindings;
+  }
+  public set categoryTypeFilter_FormworkValueBindings(value: List<CategoryTypeFilter_FormworkValueBinding>){
+    this._categoryTypeFilter_FormworkValueBindings = value;
+  }
 }

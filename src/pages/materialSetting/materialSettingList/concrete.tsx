@@ -1,7 +1,7 @@
 import React from 'react';
 import { Select, Button } from 'antd';
 import constants from '../../../constants';
-import { MassTypeMaterialsBindings } from '../../../models/materialSetting/MassTypeMaterialsBiding';
+import { MassTypeMaterialsBindings } from '../../../models/materialSetting/MassTypeMaterialsBinding';
 import { CloseOutlined, PlusOutlined } from '@ant-design/icons';
 
 const { Option } = Select;

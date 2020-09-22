@@ -1,5 +1,5 @@
-export interface MaterialBindings {
-  materialName: string,
-  materialDescription: string,
-  layerWidth: number
+export class MaterialBindings {
+  materialBinding: string = "Tên vật liệu";
+  materialDescription: string = "Mô tả";
+  layerWidth: number = 100;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Collapse, Row, Select, Col, Button } from 'antd';
 import constants from '../../../constants';
 import { PlusSquareOutlined, CloseCircleOutlined, PlusOutlined } from '@ant-design/icons';
-import { MassTypeMaterialsBindings } from '../../../models/materialSetting/MassTypeMaterialsBiding';
+import { MassTypeMaterialsBindings } from '../../../models/materialSetting/MassTypeMaterialsBinding';
 import { MainValueBinding } from '../../../models/materialSetting/formwork/FVB_FormworkValueBinding';
 
 const { Panel } = Collapse;
