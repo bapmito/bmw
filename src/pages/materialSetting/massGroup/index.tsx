@@ -361,6 +361,23 @@ const MassGroupView = () => {
     });
   };
 
+  const addView = (massGroupFoldersSelected: MassGroupFolder[]) => {
+    massGroupFoldersSelected.push({
+      name: `View ${massGroupFoldersSelected.length + 1}`,
+      mainMassGroupComponent: {
+        description: 'Mô tả nhóm',
+        name: 'Bộ môn',
+        massGroups: [],
+        massGroupFilterNames: [],
+        massGroupFilterType: 0,
+        isHaveHorizontalGroup: false,
+        horizontal_MassGroupByPropertyName: 0
+      },
+    });
+
+    setMassGroup([...massGroup]);
+  };
+
   const massGroupFoldersSelected = addKeyForMassGroup(massGroup && massGroup.length > 0 && massGroup.filter(item => {
     return item.disciplineType === disciplineSelected;
   })[0].massGroupFolders);
@@ -421,6 +438,16 @@ const MassGroupView = () => {
                 </div>
               );
             })}
+          </div>
+          <div className="ml-10 mt-10 mb-10">
+            <Button
+              type="primary"
+              icon={<PlusOutlined />}
+              className="btn-custom"
+              onClick={() => addView(massGroupFoldersSelected)}
+            >
+              View
+            </Button>
           </div>
         </div>
       </div>
