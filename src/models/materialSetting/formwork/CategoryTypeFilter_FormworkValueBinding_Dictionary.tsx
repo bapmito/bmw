@@ -9,6 +9,9 @@ export class CategoryTypeFilter_FormworkValueBinding_Dictionary
     if (this._categoryTypeFilter_FormworkValueBindings == null)
     {
       this._categoryTypeFilter_FormworkValueBindings = new List<CategoryTypeFilter_FormworkValueBinding>();
+      _categoryTypeFilter_FormworkValueBinding: CategoryTypeFilter_FormworkValueBinding;
+    
+
     }
     return this._categoryTypeFilter_FormworkValueBindings;
   }
