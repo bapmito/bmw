@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { List } from "../../list/List";
 import { MassCalculateBy } from "../../mass/MassCalculateBy";
 import { FVB_FormworkValueBindingType } from "./FVB_FormworkValueBindingType";
@@ -18,4 +19,13 @@ export class FVB_FormworkValueBinding {
   }
 
   massCalculateBy: MassCalculateBy = MassCalculateBy.ByArea;
+=======
+export interface MainValueBinding {
+  key?: string,
+  name: string,
+  valueBindingType: number,
+  parameterNameForJson: string,
+  subValueBindingsForJson: MainValueBinding[],
+  massCalculateBy: number,
+>>>>>>> a766598c25e3ae73d733171bc1194e9e3ba5f2b3
 }

@@ -4,7 +4,8 @@ const AboutUs = React.lazy(() => import('./pages/aboutUs'));
 const Blog = React.lazy(() => import('./pages/blog'));
 const Cooperation = React.lazy(() => import('./pages/cooperation'));
 const Project = React.lazy(() => import('./pages/project'));
-const MaterialSetting = React.lazy(() => import('./pages/materialSetting'));
+const MaterialSetting = React.lazy(() => import('./pages/materialSetting/materialSettingList'));
+const MassGroup = React.lazy(() => import('./pages/materialSetting/massGroup'));
 
 const routes = [
   {
@@ -24,6 +25,9 @@ const routes = [
   },
   {
     path: '/material-setting', exact: true, name: 'Material Setting', component: MaterialSetting,
+  },
+  {
+    path: '/mass-group', exact: true, name: 'Mass Group', component: MassGroup,
   },
 ];
 
